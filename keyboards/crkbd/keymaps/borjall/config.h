@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MASTER_LEFT
 // #define MASTER_RIGHT
 // #define EE_HANDS
-#include "rgb/rgb_stuff.h"
+//include "rgb/rgb_stuff.h"
 
 #ifdef RGBLIGHT_ENABLE
     #define RGBLIGHT_EFFECT_RAINBOW_SWIRL
@@ -35,6 +35,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define RGBLIGHT_HUE_STEP 10
     #define RGBLIGHT_SAT_STEP 17
     #define RGBLIGHT_VAL_STEP 17
+//  #undef RGBLIGHT_EFFECT_RAINBOW_SWIRL
+	#undef RGBLIGHT_EFFECT_BREATHING
+	#undef RGBLIGHT_EFFECT_RAINBOW_MOOD
+	#undef RGBLIGHT_EFFECT_SNAKE
+	#undef RGBLIGHT_EFFECT_KNIGHT
+	#undef RGBLIGHT_EFFECT_CHRISTMAS
+	#undef RGBLIGHT_EFFECT_STATIC_GRADIENT
+	#undef RGBLIGHT_EFFECT_RGB_TEST
+	#undef RGBLIGHT_EFFECT_ALTERNATING
+	#undef RGBLIGHT_EFFECT_TWINKLE
 #endif
 
 #define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
