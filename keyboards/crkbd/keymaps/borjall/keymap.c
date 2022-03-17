@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include QMK_KEYBOARD_H
 #include <stdio.h>
 #include "features/caps_word.h"
-#include "secrets/secrets.h"	
+#include "secrets/secrets.h"
 
 //__attribute__((weak)) bool process_record_secrets(uint16_t keycode, keyrecord_t *record) { return true; }
 __attribute__((weak)) bool process_record_keymap(uint16_t keycode, keyrecord_t *record) { return true; }
@@ -46,31 +46,33 @@ enum custom_keycodes {
 #define U_CPY C(KC_C)
 #define U_CUT C(KC_X)
 #define U_UND C(KC_Z)
-#define U_SAV C(KC_S)
+#define U_MIN C(KC_MINS)
+#define U_MAX C(KC_PLUS)
+/*#define U_SAV C(KC_S)
 #define U_CLS C(KC_W)
 #define U_BLD C(KC_B)
 #define U_SRC C(KC_F)
-#define U_TAB C(KC_T)
+#define U_TAB C(KC_T)*/
 
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE] = LAYOUT_miryoku(
     KC_Q,              KC_W,              KC_E,              KC_R,              KC_T,              KC_Y,              KC_U,              KC_I,              KC_O,              KC_P,
-    LGUI_T(KC_A),      LALT_T(KC_S),      LCTL_T(KC_D),      LSFT_T(KC_F),      KC_G,              KC_H,              LSFT_T(KC_J),      LCTL_T(KC_K),      LALT_T(KC_L),      LGUI_T(KC_QUOT),
+    LGUI_T(KC_A),      LALT_T(KC_S),      LCTL_T(KC_D),      LSFT_T(KC_F),      KC_G,              KC_H,              LSFT_T(KC_J),      LCTL_T(KC_K),      KC_L,      LGUI_T(KC_QUOT),
     LT(BUTTON, KC_Z),  ALGR_T(KC_X),      KC_C,              KC_V,              KC_B,              KC_N,              KC_M,              KC_COMM,           ALGR_T(KC_DOT),    LT(BUTTON, KC_SLSH),
     U_NP,              U_NP,              LT(MEDIA, KC_ESC), LT(NAV, KC_SPC),   LT(MOUSE, KC_TAB), LT(SYM, KC_ENT),   LT(NUM, KC_BSPC),  LT(FUN, KC_DEL),   U_NP,              U_NP
   ),
   [NAV] = LAYOUT_miryoku(
-    U_NA,    U_CLS,    U_NA,    U_NA,    U_TAB,    U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
-    U_NA,    U_SAV,    U_NA,    U_SRC,   U_NA,     KC_CAPS, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,
-    U_UND,   U_CUT,    U_CPY,   U_PST,   U_BLD,    KC_INS,  KC_HOME, KC_PGDN, KC_PGUP, KC_END,
-    U_NP,    U_NP,     U_NA,    U_NA,    U_NA,     KC_ENT,  KC_BSPC, KC_DEL,  U_NP,    U_NP
+    RESET,   U_NA,    U_NA,    U_NA,    U_NA,    U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
+    KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, U_NA,    KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_CAPS,
+    U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    KC_HOME, KC_PGDN, KC_PGUP, KC_END,  KC_INS,
+    U_NP,    U_NP,    U_NA,    U_NA,    U_NA,    KC_ENT,  KC_BSPC, KC_DEL,  U_NP,    U_NP
   ),
   [MOUSE] = LAYOUT_miryoku(
-    RESET,   U_NA,    U_NA,    U_NA,    U_NA,    U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
-    KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, U_NA,    U_NU,    KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R,
-    U_NA,    KC_ALGR, U_NA,    U_NA,    U_NA,    U_NU,    KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R,
+    RESET,   U_NA,    U_NA,    U_NA,    KC_DEL,    U_RDO,   U_PST,   U_CPY,   U_CUT,   U_UND,
+    KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, KC_BSPC,    U_NU,    KC_MS_L, KC_MS_D, KC_MS_U, KC_MS_R,
+    U_NA,    KC_ALGR, U_NA,    U_NA,    KC_ENT,    U_MIN,    KC_WH_L, KC_WH_D, KC_WH_U, KC_WH_R,
     U_NP,    U_NP,    U_NA,    U_NA,    U_NA,    KC_BTN1, KC_BTN3, KC_BTN2, U_NP,    U_NP
   ),
   [MEDIA] = LAYOUT_miryoku(
@@ -104,16 +106,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     U_NP,    U_NP,    KC_BTN2, KC_BTN3, KC_BTN1, KC_BTN1, KC_BTN3, KC_BTN2, U_NP,    U_NP
    ),
   [GAME] = LAYOUT_split_3x6_3(
-    KC_ESC,  KC_Z,  KC_1,  KC_2,   KC_3,   KC_4,    KC_5,   KC_6,    KC_U,    KC_Y,   KC_QUOT, TG(GAME),
-    KC_LSFT, KC_X,  KC_Q,  KC_W,   KC_E,   KC_R,    KC_T,   KC_N,    KC_E,    KC_I,   KC_O,    KC_LSFT,
-    KC_LCTL, KC_V,  KC_A,  KC_S,   KC_D,   KC_F,    KC_G,   KC_H,    KC_COMM, KC_DOT, KC_SLSH, KC_LCTL,
+    KC_ESC,  KC_T,  KC_Q,  KC_W,   KC_E,   KC_R,    KC_4,   KC_3,    KC_2,    KC_1,   KC_0, TG(GAME),
+    KC_LSFT, KC_G,  KC_A,  KC_S,   KC_D,   KC_F,    KC_H,   KC_J,    KC_K,    KC_L,   KC_QUOT,    KC_LSFT,
+    KC_LCTL, KC_Z,  KC_X,  KC_C,   KC_V,   KC_B,    KC_N,   KC_M,    KC_COMM, KC_DOT, KC_SLSH, KC_LCTL,
                            KC_LCTL, KC_SPC, KC_TAB, KC_ENT, KC_BSPC, KC_DEL
   )
 };
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LGUI_T(KC_A):   
+        case LGUI_T(KC_A):
             return TAPPING_TERM + 250;
         default:
             return TAPPING_TERM;
