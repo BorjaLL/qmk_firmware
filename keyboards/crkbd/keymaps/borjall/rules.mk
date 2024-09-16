@@ -16,3 +16,5 @@ SRC += features/caps_word.c
 MOUSEKEY_ENABLE = yes # Mouse keys (+4700)
 EXTRAKEY_ENABLE = yes # Audio control and System control (+450)
 AUTO_SHIFT_ENABLE = no # Auto Shift
+#test 2
+
